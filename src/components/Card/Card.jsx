@@ -7,11 +7,11 @@ const Card = ({ datas }) => {
 
   return (
     <div className="grid grid-cols-10 gap-4">
-      {datas.map((data, index) => {
+      {datas?.map((data, index) => {
         return (
           <Link
             key={index}
-            href={`search/${data.id}`}
+            href={`movie/${data.id}`}
             className="relative overflow-hidden group hover:scale-95 transition-all ease-in-out duration-300 border rounded-sm"
           >
             <div className="">

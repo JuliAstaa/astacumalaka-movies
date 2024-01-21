@@ -7,16 +7,16 @@ const Navbar = () => {
     <div className="w-full h-16 p-4">
       <div className="grid grid-cols-3 gap-16">
         <div className="title flex items-center">
-          <h1 className="font-semibold text-white">
+          <Link href={"/"} className="font-semibold text-white">
             Astacumalaka's <span className="text-red-700">Movie</span>
-          </h1>
+          </Link>
         </div>
         <div className="">
           <div className="w-full h-full flex justify-between items-center">
             <ul className="w-full h-full flex justify-between items-center">
               <li>
                 <Link
-                  href={"/popular"}
+                  href={"/popular?page=1"}
                   className="group text-white hover:text-red-700 transition-all ease-in-out duration-300 flex flex-col items-center"
                 >
                   Popular
@@ -25,7 +25,7 @@ const Navbar = () => {
               </li>
               <li>
                 <Link
-                  href={"/popular"}
+                  href={"/top-rated?page=1"}
                   className="group text-white hover:text-red-700 transition-all ease-in-out duration-300 flex flex-col items-center"
                 >
                   Top Rated
@@ -34,7 +34,7 @@ const Navbar = () => {
               </li>
               <li>
                 <Link
-                  href={"/popular"}
+                  href={"/upcoming?page=1"}
                   className="group text-white hover:text-red-700 transition-all ease-in-out duration-300 flex flex-col items-center"
                 >
                   Upcoming
