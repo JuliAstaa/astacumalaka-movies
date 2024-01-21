@@ -1,15 +1,18 @@
 "use client";
 
-import React, { useEffect } from "react";
+import React, { useEffect, useState, Suspense, lazy } from "react";
 import { FetchingDataMovies } from "@/libs/FetchingData";
 import { setPopularMovies, getPopularMovies } from "@/features/MovieSlice";
 import { useDispatch, useSelector } from "react-redux";
 import Carousel from "../Carousel/Carousel";
-import Card from "../Card/Card";
+import Link from "next/link";
+const Card = lazy(() => import("../Card/Card"));
+import { LoadingCard, LoadingData } from "../Loading/LoadingCard";
 
 const Movies = () => {
   const dispatch = useDispatch();
   const popularMovies = useSelector(getPopularMovies);
+  const [loading, setLoading] = useState(true);
 
   useEffect(() => {
     const movies = async () => {
@@ -26,7 +29,22 @@ const Movies = () => {
         <div className="popular">
           <h1 className="text-xl font-semibold text-white">Popular Movie</h1>
           <div className="w-full h-full mt-8">
-            <Card datas={popularMovies.results} />
+            <div className="grid grid-cols-10 gap-4">
+              {!popularMovies.results && <LoadingData />}
+              {popularMovies.results?.map((movie, index) => {
+                return (
+                  <Link key={index} href={`movie/${movie.id}`}>
+                    <Suspense fallback={<LoadingCard />}>
+                      <Card
+                        movie={movie}
+                        loading={loading}
+                        setLoading={setLoading}
+                      />
+                    </Suspense>
+                  </Link>
+                );
+              })}
+            </div>
           </div>
         </div>
       </div>

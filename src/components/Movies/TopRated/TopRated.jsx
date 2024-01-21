@@ -14,8 +14,10 @@ const TopRated = () => {
   const searchParams = useSearchParams();
   const currPage = searchParams.get("page");
   const [page, setPage] = useState(parseInt(currPage));
+  const [loading, setLoading] = useState(true);
 
   useEffect(() => {
+    setLoading(true);
     const movies = async () => {
       const data = await FetchingDataMovies("top_rated", page);
       dispatch(setTopRatedMovies(data));
@@ -25,8 +27,12 @@ const TopRated = () => {
 
   return (
     <div className="max-w-7xl w-full h-full mx-auto">
-      <Navbar />
-      <AllMovies movies={topRatedMovies.results} title={"Top Rated"}>
+      <AllMovies
+        movies={topRatedMovies.results}
+        title={"Top Rated"}
+        loading={loading}
+        setLoading={setLoading}
+      >
         <Pagination
           url={"top-rated"}
           page={page}

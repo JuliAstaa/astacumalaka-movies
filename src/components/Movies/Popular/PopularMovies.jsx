@@ -14,8 +14,10 @@ const PopularMovies = () => {
   const searchParams = useSearchParams();
   const currPage = searchParams.get("page");
   const [page, setPage] = useState(parseInt(currPage));
+  const [loading, setLoading] = useState(true);
 
   useEffect(() => {
+    setLoading(true);
     const movies = async () => {
       const data = await FetchingDataMovies("popular", page);
       dispatch(setPopularMovies(data));
@@ -25,8 +27,12 @@ const PopularMovies = () => {
 
   return (
     <div className="max-w-7xl w-full h-full mx-auto">
-      <Navbar />
-      <AllMovies movies={popularMovies.results} title={"Popular Movies"}>
+      <AllMovies
+        movies={popularMovies.results}
+        title={"Popular Movies"}
+        loading={loading}
+        setLoading={setLoading}
+      >
         <Pagination
           url={"popular"}
           page={page}
