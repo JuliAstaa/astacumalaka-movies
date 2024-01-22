@@ -1,60 +1,49 @@
-import React from "react";
+"use client";
+
+import React, { useState } from "react";
 import Link from "next/link";
-import { FaSearch } from "react-icons/fa";
+import Search from "./Search";
+import NavMenu from "./NavMenu";
 
 const Navbar = () => {
+  const [active, setActive] = useState(false);
+
   return (
     <div className="w-full h-16 p-4">
       <div className="grid grid-cols-3 gap-16">
-        <div className="title flex items-center">
+        <div className="col-span-2 lg:col-span-1 title flex items-center">
           <Link href={"/"} className="font-semibold text-white">
             Astacumalaka's <span className="text-red-700">Movie</span>
           </Link>
         </div>
-        <div className="">
-          <div className="w-full h-full flex justify-between items-center">
-            <ul className="w-full h-full flex justify-between items-center">
-              <li>
-                <Link
-                  href={"/popular?page=1"}
-                  className="group text-white hover:text-red-700 transition-all ease-in-out duration-300 flex flex-col items-center"
-                >
-                  Popular
-                  <span className=" w-[80%] h-[2.5px] bg-red-700 -bottom-1  origin-center transition-all ease-in-out duration-300 scale-0 group-hover:scale-100"></span>
-                </Link>
-              </li>
-              <li>
-                <Link
-                  href={"/top-rated?page=1"}
-                  className="group text-white hover:text-red-700 transition-all ease-in-out duration-300 flex flex-col items-center"
-                >
-                  Top Rated
-                  <span className=" w-[80%] h-[2.5px] bg-red-700 -bottom-1  origin-center transition-all ease-in-out duration-300 scale-0 group-hover:scale-100"></span>
-                </Link>
-              </li>
-              <li>
-                <Link
-                  href={"/upcoming?page=1"}
-                  className="group text-white hover:text-red-700 transition-all ease-in-out duration-300 flex flex-col items-center"
-                >
-                  Upcoming
-                  <span className=" w-[80%] h-[2.5px] bg-red-700 -bottom-1  origin-center transition-all ease-in-out duration-300 scale-0 group-hover:scale-100"></span>
-                </Link>
-              </li>
-            </ul>
-          </div>
+        <div className="hidden  w-full h-full lg:flex justify-center items-center">
+          <NavMenu />
         </div>
-        <div className="search w-full flex justify-end">
-          <div className="w-full bg-white flex p-1 rounded-md overflow-hidden">
-            <label htmlFor="search"></label>
-            <input
-              id="search"
-              type="text"
-              className="p-1 text-black w-full rounded-md outline-none"
-            />
-            <button className="text-xl text-black">
-              <FaSearch />
-            </button>
+        <div className=" hidden lg:flex w-full h-full">
+          <Search />
+        </div>
+        <div className="flex lg:hidden justify-end relative">
+          <button
+            onClick={() => setActive(!active)}
+            className={`hamburger flex flex-col justify-between items-center ${
+              active ? "hamburger-active" : null
+            }`}
+          >
+            <span className="line origin-left"></span>
+            <span className="line origin-center"></span>
+            <span className="line origin-left"></span>
+          </button>
+          <div
+            className={`absolute z-50 top-7 w-[300px] h-96 border -right-0 bg-black origin-top-right transition-all ease-in-out duration-300 flex flex-col p-8 ${
+              active ? "scale-100" : "scale-0"
+            }`}
+          >
+            <div className="w-full border bg-white rounded-md">
+              <Search />
+            </div>
+            <div className="w-full h-full lg:flex lg:justify-center lg:items-center mt-12">
+              <NavMenu />
+            </div>
           </div>
         </div>
       </div>

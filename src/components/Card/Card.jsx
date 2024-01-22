@@ -1,6 +1,6 @@
 import React from "react";
 import Image from "next/image";
-import { LoadingCard } from "../Loading/LoadingCard";
+import { LoadingCard } from "../Loading/Skeleton";
 
 const Card = ({ movie, loading, setLoading }) => {
   const imgUrl = process.env.NEXT_PUBLIC_BASE_IMG_URL;
@@ -19,7 +19,7 @@ const Card = ({ movie, loading, setLoading }) => {
           width={100}
           height={100}
           onLoad={() => setLoading(false)}
-          className="w-auto h-auto object-cover group-hover:scale-125 transition-all ease-in-out duration-300"
+          className="w-full h-full object-cover group-hover:scale-125 transition-all ease-in-out duration-300"
         />
       </div>
       <div className="absolute w-full h-full -bottom-full group-hover:bottom-0 transition-all ease-in-out duration-300 left-0 bg-[rgba(0,0,0,0.6)] flex items-end text-center pb-4">

@@ -8,3 +8,9 @@ export const FetchingDataMovies = async (source, page) => {
   const datas = await respone.json();
   return datas;
 };
+
+export const FetchingDetailMovie = async (movieId) => {
+  const respone = await fetch(`${baseURl}/${movieId}?api_key=${apiKey}`);
+  const datas = await respone.json();
+  return datas;
+};

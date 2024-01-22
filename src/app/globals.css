@@ -7,3 +7,22 @@
 * {
   font-family: "Poppins", sans-serif;
 }
+html {
+  @apply overflow-x-hidden;
+}
+
+.hamburger-active > span:nth-child(1) {
+  @apply rotate-45;
+}
+
+.hamburger-active > span:nth-child(2) {
+  @apply scale-0;
+}
+
+.hamburger-active > span:nth-child(3) {
+  @apply -rotate-45;
+}
+
+.line {
+  @apply w-[29px] h-1 bg-white transition-all ease-in-out duration-300;
+}

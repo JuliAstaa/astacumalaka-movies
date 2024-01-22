@@ -7,7 +7,7 @@ import { useDispatch, useSelector } from "react-redux";
 import Carousel from "../Carousel/Carousel";
 import Link from "next/link";
 const Card = lazy(() => import("../Card/Card"));
-import { LoadingCard, LoadingData } from "../Loading/LoadingCard";
+import { LoadingCard, LoadingData } from "../Loading/Skeleton";
 
 const Movies = () => {
   const dispatch = useDispatch();
@@ -29,11 +29,11 @@ const Movies = () => {
         <div className="popular">
           <h1 className="text-xl font-semibold text-white">Popular Movie</h1>
           <div className="w-full h-full mt-8">
-            <div className="grid grid-cols-10 gap-4">
+            <div className="w-full h-full grid grid-cols-2 md:grid-cols-4 lg:grid-cols-10 gap-4">
               {!popularMovies.results && <LoadingData />}
               {popularMovies.results?.map((movie, index) => {
                 return (
-                  <Link key={index} href={`movie/${movie.id}`}>
+                  <Link key={index} href={`movie/${movie.id}/${movie.title}`}>
                     <Suspense fallback={<LoadingCard />}>
                       <Card
                         movie={movie}

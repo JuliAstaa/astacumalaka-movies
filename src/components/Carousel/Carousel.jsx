@@ -6,7 +6,7 @@ import Image from "next/image";
 import { IoStarSharp } from "react-icons/io5";
 import { Swiper, SwiperSlide } from "swiper/react";
 import { Suspense } from "react";
-import { LoadingCarousel } from "../Loading/LoadingCard";
+import { LoadingCarousel } from "../Loading/Skeleton";
 
 // Import Swiper styles
 import "swiper/css";
@@ -42,12 +42,12 @@ const Carousel = () => {
                     className="w-full h-full object-cover object-center "
                   />
                   <div className="absolute w-full h-full bg-gradient-to-r from-[rgba(0,0,0,0.9)] to-[rgba(0,0,0,0.2)] top-0 left-0 p-8 cursor-pointer">
-                    <div className="w-1/2 flex flex-col gap-4">
+                    <div className="w-full lg:w-1/2 h-full lg:h-auto flex flex-col justify-end lg:justify-start lg:gap-4">
                       <div className="title">
                         <h1 className="text-xl text-white font-bold">
                           {movie.title}
                         </h1>
-                        <p className="text-slate-400 text-sm">
+                        <p className="hidden lg:block text-slate-400 text-sm">
                           {movie.overview}
                         </p>
                       </div>
