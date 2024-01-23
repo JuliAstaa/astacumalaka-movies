@@ -37,15 +37,23 @@ const DetailMovie = ({ movieID }) => {
           <div className="relative">
             <div className="w-full h-[480px]">
               <Suspense fallback={<LoadingCarousel />}>
-                <Image
-                  priority
-                  alt={`${movie.title}`}
-                  src={`${imgURL}${movie.backdrop_path}`}
-                  width={1080}
-                  height={720}
-                  onLoad={() => setLoading(false)}
-                  className="w-full h-full object-cover"
-                />
+                {!movie.backdrop_path ? (
+                  <div className="w-full h-full flex justify-center items-center">
+                    <p className="text-white text-center">
+                      {`Image not availavble :(`}
+                    </p>
+                  </div>
+                ) : (
+                  <Image
+                    priority
+                    alt={`${movie.title}`}
+                    src={`${imgURL}${movie.backdrop_path}`}
+                    width={1080}
+                    height={720}
+                    onLoad={() => setLoading(false)}
+                    className="w-full h-full object-cover"
+                  />
+                )}
               </Suspense>
               <div className="absolute w-full h-full bg-gradient-to-t from-black to-transparent top-0 left-0"></div>
             </div>
@@ -53,15 +61,23 @@ const DetailMovie = ({ movieID }) => {
               <div className="flex lg:justify-center col-span-3 lg:col-span-1 p-4 lg:p-0">
                 <div className="lg:h-96 w-40 lg:w-auto relative group transition-all ease-in-out duration-300 overflow-hidden">
                   <Suspense fallback={<LoadingPoster />}>
-                    <Image
-                      priority
-                      alt={`${movie.title}`}
-                      src={`${imgURL}${movie.poster_path}`}
-                      width={1080}
-                      height={720}
-                      onLoad={() => setLoading(false)}
-                      className="w-full h-full object-cover"
-                    />
+                    {!movie.backdrop_path ? (
+                      <div className="w-full h-full flex justify-center items-center">
+                        <p className="text-white text-center">
+                          {`Image not availavble :(`}
+                        </p>
+                      </div>
+                    ) : (
+                      <Image
+                        priority
+                        alt={`${movie.title}`}
+                        src={`${imgURL}${movie.poster_path}`}
+                        width={720}
+                        height={480}
+                        onLoad={() => setLoading(false)}
+                        className="w-full h-full object-cover"
+                      />
+                    )}
                   </Suspense>
                   <div className="w-full h-full bg-gradient-to-t from-black to-transparent absolute -bottom-full group-hover:bottom-0 transition-all ease-in-out duration-300 origin-bottom p-4 hidden lg:flex justify-end items-end">
                     <button

@@ -14,3 +14,13 @@ export const FetchingDetailMovie = async (movieId) => {
   const datas = await respone.json();
   return datas;
 };
+
+const baseSearchUrl = process.env.NEXT_PUBLIC_SEARCH_MOVIE_URL;
+
+export const FetchingSearchMovie = async (query, page) => {
+  const respone = await fetch(
+    `${baseSearchUrl}?query=${query}&api_key=${apiKey}&page=${page}`
+  );
+  const datas = await respone.json();
+  return datas;
+};

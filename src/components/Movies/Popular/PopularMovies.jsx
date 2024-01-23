@@ -1,5 +1,4 @@
 import React, { useState, useEffect } from "react";
-import Navbar from "@/components/Navbar/Navbar";
 import AllMovies from "../AllMovies/AllMovies";
 import { setPopularMovies, getPopularMovies } from "@/features/MovieSlice";
 import { useDispatch, useSelector } from "react-redux";
@@ -27,6 +26,9 @@ const PopularMovies = () => {
 
   return (
     <div className="max-w-7xl w-full h-full mx-auto">
+      <div className="px-4 mt-24">
+        <h1 className="text-xl font-semibold text-white  p-4">Popular</h1>
+      </div>
       <AllMovies
         movies={popularMovies.results}
         title={"Popular Movies"}

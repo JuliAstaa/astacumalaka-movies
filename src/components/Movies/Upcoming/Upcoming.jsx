@@ -26,6 +26,9 @@ const Upcoming = () => {
   }, [page]);
   return (
     <div className="max-w-7xl w-full h-full mx-auto">
+      <div className="px-4 mt-24">
+        <h1 className="text-xl font-semibold text-white  p-4">Upcoming</h1>
+      </div>
       <AllMovies
         movies={upcomingMovies.results}
         title={"Upcoming"}

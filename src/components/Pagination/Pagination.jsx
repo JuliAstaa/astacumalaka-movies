@@ -8,7 +8,7 @@ const Pagination = ({ page, setPage, lastPage, url }) => {
       <div className="w-3/4 flex justify-center items-center gap-2">
         {page === 1 ? null : (
           <Link
-            href={`${url}?page=${page - 1}`}
+            href={`/${url}?page=${page - 1}`}
             onClick={() => setPage((curr) => curr - 1)}
             className="border text-white min-h-10 min-w-10 p-1 flex justify-center items-center"
           >
@@ -16,7 +16,7 @@ const Pagination = ({ page, setPage, lastPage, url }) => {
           </Link>
         )}
         <Link
-          href={`${url}?page=${1}`}
+          href={`/${url}?page=${1}`}
           onClick={() => setPage(1)}
           className={`border text-white min-h-10 min-w-10 p-1 flex justify-center items-center ${
             page === 1
@@ -27,11 +27,11 @@ const Pagination = ({ page, setPage, lastPage, url }) => {
           1
         </Link>
         {navigate.map((nav, index) => {
-          return nav > 1 ? (
+          return nav > 1 && nav < lastPage ? (
             <Link
               onClick={() => setPage(nav)}
               key={index}
-              href={`${url}?page=${nav}`}
+              href={`/${url}?page=${nav}`}
               className={`border text-white min-h-10 min-w-10 p-1 flex justify-center items-center ${
                 nav === page
                   ? "border-2 border-red-500 font-semibold text-red-500"
@@ -43,20 +43,22 @@ const Pagination = ({ page, setPage, lastPage, url }) => {
           ) : null;
         })}
 
-        <Link
-          onClick={() => setPage(lastPage)}
-          href={`${url}?page=${lastPage}`}
-          className={`border text-white min-h-10 min-w-10 p-1 flex justify-center items-center ${
-            page === lastPage
-              ? "border-2 border-red-500 font-semibold text-red-500"
-              : null
-          }`}
-        >
-          {lastPage}
-        </Link>
+        {lastPage === 1 ? null : (
+          <Link
+            onClick={() => setPage(lastPage)}
+            href={`/${url}?page=${lastPage}`}
+            className={`border text-white min-h-10 min-w-10 p-1 flex justify-center items-center ${
+              page === lastPage
+                ? "border-2 border-red-500 font-semibold text-red-500"
+                : null
+            }`}
+          >
+            {lastPage}
+          </Link>
+        )}
         {page === lastPage ? null : (
           <Link
-            href={`${url}?page=${page + 1}`}
+            href={`/${url}?page=${page + 1}`}
             onClick={() => setPage((curr) => curr + 1)}
             className="border text-white min-h-10 min-w-10 p-1 flex justify-center items-center"
           >

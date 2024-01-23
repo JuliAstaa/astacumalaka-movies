@@ -13,7 +13,7 @@ const Navbar = () => {
       <div className="grid grid-cols-3 gap-16">
         <div className="col-span-2 lg:col-span-1 title flex items-center">
           <Link href={"/"} className="font-semibold text-white">
-            Astacumalaka's <span className="text-red-700">Movie</span>
+            Astacumalaka's <span className="text-red-500">Movie</span>
           </Link>
         </div>
         <div className="hidden  w-full h-full lg:flex justify-center items-center">
@@ -24,6 +24,7 @@ const Navbar = () => {
         </div>
         <div className="flex lg:hidden justify-end relative">
           <button
+            aria-label="hamburger"
             onClick={() => setActive(!active)}
             className={`hamburger flex flex-col justify-between items-center ${
               active ? "hamburger-active" : null
