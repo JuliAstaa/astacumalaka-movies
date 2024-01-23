@@ -26,8 +26,6 @@ const SearchMovie = ({ keyword }) => {
     movies();
   }, [page]);
 
-  const movies = searchMovie?.movies;
-
   return (
     <div className="max-w-7xl w-full h-full mx-auto ">
       <div className="p-4 mt-24">
@@ -39,13 +37,13 @@ const SearchMovie = ({ keyword }) => {
           keywords
         </h1>
       </div>
-      {movies.total_results === 0 ? (
+      {searchMovie.total_results === 0 ? (
         <div className="w-full h-48 flex justify-center items-center">
           <p className="text-white">{`Movie not found:(`}</p>
         </div>
-      ) : !movies ? null : (
+      ) : !searchMovie ? null : (
         <AllMovies
-          movies={movies.results}
+          movies={searchMovie.results}
           loading={loading}
           setLoading={setLoading}
         >
@@ -53,7 +51,7 @@ const SearchMovie = ({ keyword }) => {
             url={`search/${keyword}`}
             page={page}
             setPage={setPage}
-            lastPage={movies.total_pages}
+            lastPage={searchMovie.total_pages}
           />
         </AllMovies>
       )}
